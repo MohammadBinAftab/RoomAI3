@@ -6,6 +6,7 @@ import { ImageIcon, Upload, Wand2 } from "lucide-react";
 import { useState } from "react";
 import Image from "next/image";
 import { Input } from "@/components/ui/input";
+import { getSession, signIn } from "next-auth/react";
 
 const STYLE_OPTIONS = [
   'Modern',
@@ -33,7 +34,14 @@ export default function DashboardPage() {
     }
   };
 
-  const handleGenerate = () => {
+  const handleGenerate = async () => {
+    const session = await getSession();
+    if (!session) {
+      alert('You must log in to generate a design');
+      signIn('github'); // Redirect to GitHub login
+      return;
+    }
+
     if (!uploadedImage) {
       alert('Please upload an image first');
       return;
@@ -43,6 +51,7 @@ export default function DashboardPage() {
       return;
     }
     // Handle generation logic here
+    console.log("Design generated successfully");
   };
 
   return (
