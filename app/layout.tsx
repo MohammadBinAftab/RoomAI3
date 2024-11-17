@@ -1,3 +1,5 @@
+
+
 import './globals.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
@@ -5,6 +7,7 @@ import { Navbar } from '@/components/navbar';
 import { Footer } from '@/components/footer';
 import { Toaster } from '@/components/ui/toaster';
 import { ThemeProvider } from '@/components/theme-provider';
+import { Providers } from './providers';
 
 
 const inter = Inter({ subsets: ['latin'] });
@@ -22,13 +25,13 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
-        
-          <ThemeProvider
+        <Providers>
+         <ThemeProvider
             attribute="class"
             defaultTheme="system"
             enableSystem
             disableTransitionOnChange
-          >
+            >
             <div className="relative min-h-screen flex flex-col">
               <Navbar />
               <main className="flex-1">{children}</main>
@@ -36,6 +39,7 @@ export default function RootLayout({
             </div>
             <Toaster />
           </ThemeProvider>
+            </Providers>
         
       </body>
     </html>
