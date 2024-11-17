@@ -54,7 +54,7 @@ export function Navbar() {
             </DropdownMenu>
           ) : (
             <Button onClick={() => {
-              signIn();
+               signIn();
             }}>Login</Button>
           )}
         </div>
