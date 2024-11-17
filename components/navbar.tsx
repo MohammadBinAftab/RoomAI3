@@ -12,6 +12,7 @@ import {
 import { Paintbrush, LogOut, CreditCard } from 'lucide-react';
 import { useSession, signIn, signOut } from 'next-auth/react';
 
+
 export function Navbar() {
   const { data: session } = useSession();
 
@@ -52,7 +53,9 @@ export function Navbar() {
               </DropdownMenuContent>
             </DropdownMenu>
           ) : (
-            <Button onClick={() => signIn('github')}>Login</Button>
+            <Button onClick={() => {
+              signIn();
+            }}>Login</Button>
           )}
         </div>
       </div>
